@@ -108,9 +108,10 @@ export default function DashboardPage() {
         const parsedUser = storedUser ? JSON.parse(storedUser) : null;
         const email = parsedUser?.email || "demo@hubio.com";
 
-        const res = await fetch(
-          `http://localhost:5000/api/dashboard/${encodeURIComponent(email)}`,
-          {
+        
+          const res = await fetch(
+  `https://end-g8il.onrender.com/api/dashboard/${encodeURIComponent(email)}`,
+  {
             cache: "no-store",
           }
         );

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, type CSSProperties, type FormEvent } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,13 +14,13 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,8 +141,8 @@ export default function LoginPage() {
       <main style={styles.main} className="login-main">
         <div style={styles.container} className="login-container">
           <div style={styles.visualSection} className="login-visual">
-            <div style={styles.decorative1}></div>
-            <div style={styles.decorative2}></div>
+            <div style={styles.decorative1} />
+            <div style={styles.decorative2} />
 
             <div style={styles.visualContent}>
               <div style={styles.heroBadge}>Secure finance workspace</div>
@@ -167,11 +167,15 @@ export default function LoginPage() {
                 </div>
                 <div style={styles.featureItem}>
                   <div style={styles.featureCheckmark}>✓</div>
-                  <span style={styles.featureText}>Spending and cashflow insights</span>
+                  <span style={styles.featureText}>
+                    Spending and cashflow insights
+                  </span>
                 </div>
                 <div style={styles.featureItem}>
                   <div style={styles.featureCheckmark}>✓</div>
-                  <span style={styles.featureText}>Protected access and activity logs</span>
+                  <span style={styles.featureText}>
+                    Protected access and activity logs
+                  </span>
                 </div>
               </div>
 
@@ -188,9 +192,15 @@ export default function LoginPage() {
           <div style={styles.formSection} className="login-form">
             <div style={styles.formContainer} className="login-form-card">
               <div style={styles.logoContainer}>
-                <h1 style={styles.logo}>    <Link href="/" className="/">
-            <img src="https://i.imgur.com/s0j9cDx.png" alt="logo" />
-          </Link></h1>
+                <h1 style={styles.logo}>
+                  <Link href="/" style={styles.logoLink}>
+                    <img
+                      src="https://i.imgur.com/s0j9cDx.png"
+                      alt="Hubio logo"
+                      style={styles.logoImage}
+                    />
+                  </Link>
+                </h1>
                 <p style={styles.logoSubtext}>Financial operations dashboard</p>
               </div>
 
@@ -238,7 +248,10 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <div style={styles.checkboxContainer} className="login-actions-row">
+                <div
+                  style={styles.checkboxContainer}
+                  className="login-actions-row"
+                >
                   <label style={styles.checkboxLabel}>
                     <input
                       type="checkbox"
@@ -281,12 +294,12 @@ export default function LoginPage() {
                           r="10"
                           stroke="currentColor"
                           strokeWidth="4"
-                        ></circle>
+                        />
                         <path
                           style={styles.spinnerPath}
                           fill="currentColor"
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                        ></path>
+                        />
                       </svg>
                       <span>Signing in...</span>
                     </div>
@@ -297,9 +310,9 @@ export default function LoginPage() {
               </form>
 
               <div style={styles.divider}>
-                <div style={styles.dividerLine}></div>
+                <div style={styles.dividerLine} />
                 <span style={styles.dividerText}>OR</span>
-                <div style={styles.dividerLine}></div>
+                <div style={styles.dividerLine} />
               </div>
 
               <div style={styles.socialButtons}>
@@ -334,33 +347,33 @@ export default function LoginPage() {
   );
 }
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   main: {
     minHeight: "100vh",
     background:
       "linear-gradient(180deg, #f8fbff 0%, #f4f7fb 45%, #eef3f9 100%)",
     padding: "0",
-  } as React.CSSProperties,
+  },
 
   container: {
     display: "flex",
     minHeight: "100vh",
-  } as React.CSSProperties,
+  },
 
   visualSection: {
     width: "52%",
     background: "linear-gradient(135deg, #0066cc 0%, #0052cc 48%, #003f8f 100%)",
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: "56px",
-    position: "relative" as const,
+    position: "relative",
     overflow: "hidden",
-  } as React.CSSProperties,
+  },
 
   decorative1: {
-    position: "absolute" as const,
+    position: "absolute",
     top: "32px",
     right: "32px",
     width: "260px",
@@ -368,10 +381,10 @@ const styles = {
     backgroundColor: "rgba(255, 255, 255, 0.10)",
     borderRadius: "50%",
     filter: "blur(70px)",
-  } as React.CSSProperties,
+  },
 
   decorative2: {
-    position: "absolute" as const,
+    position: "absolute",
     bottom: "24px",
     left: "24px",
     width: "320px",
@@ -379,14 +392,14 @@ const styles = {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: "50%",
     filter: "blur(80px)",
-  } as React.CSSProperties,
+  },
 
   visualContent: {
-    position: "relative" as const,
+    position: "relative",
     zIndex: 2,
     width: "100%",
     maxWidth: "460px",
-  } as React.CSSProperties,
+  },
 
   heroBadge: {
     display: "inline-flex",
@@ -400,11 +413,11 @@ const styles = {
     fontWeight: 600,
     marginBottom: "24px",
     backdropFilter: "blur(10px)",
-  } as React.CSSProperties,
+  },
 
   illustration: {
     marginBottom: "28px",
-  } as React.CSSProperties,
+  },
 
   illustrationCircle: {
     display: "inline-flex",
@@ -418,7 +431,7 @@ const styles = {
     fontSize: "42px",
     border: "1px solid rgba(255,255,255,0.18)",
     boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-  } as React.CSSProperties,
+  },
 
   visualTitle: {
     fontSize: "42px",
@@ -427,7 +440,7 @@ const styles = {
     color: "#fff",
     marginBottom: "14px",
     letterSpacing: "-0.04em",
-  } as React.CSSProperties,
+  },
 
   visualSubtitle: {
     fontSize: "16px",
@@ -435,20 +448,20 @@ const styles = {
     color: "rgba(255, 255, 255, 0.82)",
     marginBottom: "34px",
     maxWidth: "420px",
-  } as React.CSSProperties,
+  },
 
   featuresList: {
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     gap: "14px",
     marginTop: "8px",
-  } as React.CSSProperties,
+  },
 
   featureItem: {
     display: "flex",
     alignItems: "center",
     gap: "12px",
-  } as React.CSSProperties,
+  },
 
   featureCheckmark: {
     display: "flex",
@@ -462,13 +475,13 @@ const styles = {
     fontSize: "12px",
     fontWeight: 700,
     flexShrink: 0,
-  } as React.CSSProperties,
+  },
 
   featureText: {
     color: "rgba(255, 255, 255, 0.93)",
     fontSize: "14px",
     fontWeight: 500,
-  } as React.CSSProperties,
+  },
 
   testimonial: {
     marginTop: "34px",
@@ -477,23 +490,23 @@ const styles = {
     border: "1px solid rgba(255, 255, 255, 0.16)",
     borderRadius: "18px",
     padding: "22px",
-  } as React.CSSProperties,
+  },
 
   testimonialLabel: {
     color: "#dbeafe",
     fontSize: "12px",
     fontWeight: 700,
     letterSpacing: "0.08em",
-    textTransform: "uppercase" as const,
+    textTransform: "uppercase",
     margin: "0 0 10px 0",
-  } as React.CSSProperties,
+  },
 
   testimonialText: {
     color: "rgba(255, 255, 255, 0.92)",
     fontSize: "14px",
     lineHeight: 1.7,
     margin: 0,
-  } as React.CSSProperties,
+  },
 
   formSection: {
     width: "48%",
@@ -502,7 +515,7 @@ const styles = {
     justifyContent: "center",
     padding: "56px 32px",
     backgroundColor: "transparent",
-  } as React.CSSProperties,
+  },
 
   formContainer: {
     width: "100%",
@@ -513,11 +526,11 @@ const styles = {
     padding: "36px 30px",
     boxShadow: "0 24px 60px rgba(15, 23, 42, 0.08)",
     backdropFilter: "blur(10px)",
-  } as React.CSSProperties,
+  },
 
   logoContainer: {
     marginBottom: "30px",
-  } as React.CSSProperties,
+  },
 
   logo: {
     fontSize: "28px",
@@ -525,17 +538,30 @@ const styles = {
     color: "#0066cc",
     margin: 0,
     letterSpacing: "-0.03em",
-  } as React.CSSProperties,
+  },
+
+  logoLink: {
+    display: "inline-flex",
+    alignItems: "center",
+    textDecoration: "none",
+  },
+
+  logoImage: {
+    display: "block",
+    width: "130px",
+    height: "auto",
+    objectFit: "contain",
+  },
 
   logoSubtext: {
     margin: "6px 0 0 0",
     fontSize: "13px",
     color: "#6b7280",
-  } as React.CSSProperties,
+  },
 
   formHeader: {
     marginBottom: "28px",
-  } as React.CSSProperties,
+  },
 
   formTitle: {
     fontSize: "34px",
@@ -543,25 +569,25 @@ const styles = {
     color: "#111827",
     margin: "0 0 8px 0",
     letterSpacing: "-0.04em",
-  } as React.CSSProperties,
+  },
 
   formSubtitle: {
     fontSize: "14px",
     color: "#6b7280",
     margin: 0,
     lineHeight: 1.6,
-  } as React.CSSProperties,
+  },
 
   form: {
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     gap: "20px",
-  } as React.CSSProperties,
+  },
 
   formGroup: {
     display: "flex",
-    flexDirection: "column" as const,
-  } as React.CSSProperties,
+    flexDirection: "column",
+  },
 
   label: {
     fontSize: "12px",
@@ -570,7 +596,7 @@ const styles = {
     marginBottom: "8px",
     display: "block",
     letterSpacing: "0.02em",
-  } as React.CSSProperties,
+  },
 
   input: {
     width: "100%",
@@ -580,15 +606,15 @@ const styles = {
     borderRadius: "12px",
     backgroundColor: "#fff",
     outline: "none",
-    boxSizing: "border-box" as const,
+    boxSizing: "border-box",
     color: "#111827",
-  } as React.CSSProperties,
+  },
 
   passwordContainer: {
-    position: "relative" as const,
+    position: "relative",
     display: "flex",
     alignItems: "center",
-  } as React.CSSProperties,
+  },
 
   passwordInput: {
     width: "100%",
@@ -598,12 +624,12 @@ const styles = {
     borderRadius: "12px",
     backgroundColor: "#fff",
     outline: "none",
-    boxSizing: "border-box" as const,
+    boxSizing: "border-box",
     color: "#111827",
-  } as React.CSSProperties,
+  },
 
   eyeButton: {
-    position: "absolute" as const,
+    position: "absolute",
     right: "12px",
     background: "#f3f4f6",
     border: "1px solid #e5e7eb",
@@ -616,7 +642,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  } as React.CSSProperties,
+  },
 
   checkboxContainer: {
     display: "flex",
@@ -624,7 +650,7 @@ const styles = {
     justifyContent: "space-between",
     fontSize: "13px",
     gap: "12px",
-  } as React.CSSProperties,
+  },
 
   checkboxLabel: {
     display: "flex",
@@ -632,21 +658,21 @@ const styles = {
     gap: "8px",
     cursor: "pointer",
     color: "#4b5563",
-  } as React.CSSProperties,
+  },
 
   checkbox: {
     width: "16px",
     height: "16px",
     cursor: "pointer",
     accentColor: "#0066cc",
-  } as React.CSSProperties,
+  },
 
   forgotLink: {
     color: "#0066cc",
     textDecoration: "none",
     fontWeight: "600",
-    whiteSpace: "nowrap" as const,
-  } as React.CSSProperties,
+    whiteSpace: "nowrap",
+  },
 
   submitButton: {
     width: "100%",
@@ -663,53 +689,53 @@ const styles = {
     justifyContent: "center",
     gap: "8px",
     boxShadow: "0 12px 24px rgba(0, 102, 204, 0.18)",
-  } as React.CSSProperties,
+  },
 
   loadingContainer: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
-  } as React.CSSProperties,
+  },
 
   spinner: {
     width: "16px",
     height: "16px",
     animation: "spin 1s linear infinite",
-  } as React.CSSProperties,
+  },
 
   spinnerCircle: {
     opacity: 0.25,
-  } as React.CSSProperties,
+  },
 
   spinnerPath: {
     opacity: 0.75,
-  } as React.CSSProperties,
+  },
 
   divider: {
     display: "flex",
     alignItems: "center",
     gap: "16px",
     margin: "24px 0 20px",
-  } as React.CSSProperties,
+  },
 
   dividerLine: {
     flex: 1,
     height: "1px",
     backgroundColor: "#e5e7eb",
-  } as React.CSSProperties,
+  },
 
   dividerText: {
     fontSize: "12px",
     color: "#9ca3af",
     fontWeight: 700,
     letterSpacing: "0.08em",
-  } as React.CSSProperties,
+  },
 
   socialButtons: {
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     gap: "12px",
-  } as React.CSSProperties,
+  },
 
   socialButton: {
     width: "100%",
@@ -725,7 +751,7 @@ const styles = {
     color: "#111827",
     fontWeight: "600",
     fontSize: "14px",
-  } as React.CSSProperties,
+  },
 
   socialIcon: {
     width: "22px",
@@ -739,34 +765,34 @@ const styles = {
     fontSize: "12px",
     fontWeight: 800,
     flexShrink: 0,
-  } as React.CSSProperties,
+  },
 
   signupText: {
     marginTop: "28px",
-    textAlign: "center" as const,
+    textAlign: "center",
     fontSize: "14px",
     color: "#6b7280",
-  } as React.CSSProperties,
+  },
 
   signupLink: {
     color: "#0066cc",
     textDecoration: "none",
     fontWeight: "700",
-  } as React.CSSProperties,
+  },
 
   footerText: {
     marginTop: "18px",
-    textAlign: "center" as const,
+    textAlign: "center",
     fontSize: "12px",
     color: "#9ca3af",
     lineHeight: 1.7,
-  } as React.CSSProperties,
+  },
 
   footerLink: {
     color: "#0066cc",
     textDecoration: "none",
     fontWeight: 600,
-  } as React.CSSProperties,
+  },
 
   errorBox: {
     marginTop: "-4px",
@@ -778,5 +804,5 @@ const styles = {
     color: "#be123c",
     fontSize: "13px",
     fontWeight: "600",
-  } as React.CSSProperties,
+  },
 };
