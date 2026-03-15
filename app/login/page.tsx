@@ -20,7 +20,7 @@ export default function LoginPage() {
     setErrorMessage("");
 
     try {
-     const res = await fetch("https://end-g8il.onrender.com/api/auth/login", {
+      const res = await fetch("https://end-g8il.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,9 +69,22 @@ export default function LoginPage() {
         body {
           margin: 0;
           padding: 0;
+          min-height: 100%;
           font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, "Helvetica Neue", sans-serif;
           background: #f6f8fb;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        button,
+        input,
+        a {
+          -webkit-tap-highlight-color: transparent;
         }
 
         @keyframes spin {
@@ -80,9 +93,63 @@ export default function LoginPage() {
           }
         }
 
+        .login-main {
+          min-height: 100vh;
+        }
+
+        .login-container {
+          display: grid;
+          grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+          min-height: 100vh;
+        }
+
+        .login-visual,
+        .login-form {
+          min-width: 0;
+        }
+
+        .login-form-card,
+        .login-visual-inner {
+          width: 100%;
+        }
+
+        .login-form-card {
+          max-width: 460px;
+        }
+
+        .login-hero-title {
+          font-size: clamp(2rem, 4vw, 3.2rem) !important;
+        }
+
+        .login-title {
+          font-size: clamp(2rem, 3vw, 2.5rem) !important;
+        }
+
+        .login-hero-text {
+          font-size: clamp(0.95rem, 1.4vw, 1.05rem) !important;
+        }
+
+        .login-form-subtitle {
+          font-size: clamp(0.92rem, 1.2vw, 1rem) !important;
+        }
+
+        @media (max-width: 1200px) {
+          .login-visual {
+            padding: 48px 36px !important;
+          }
+
+          .login-form {
+            padding: 48px 28px !important;
+          }
+
+          .login-form-card {
+            max-width: 440px !important;
+          }
+        }
+
         @media (max-width: 1024px) {
           .login-container {
-            flex-direction: column;
+            grid-template-columns: 1fr;
           }
 
           .login-visual,
@@ -91,43 +158,57 @@ export default function LoginPage() {
           }
 
           .login-visual {
-            min-height: 380px;
-            padding: 40px 24px !important;
-          }
-
-          .login-form {
-            padding: 40px 24px !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .login-main {
-            background: #f6f8fb;
-          }
-
-          .login-visual {
             min-height: auto;
-            padding: 32px 20px !important;
+            padding: 40px 24px 32px !important;
           }
 
           .login-form {
-            padding: 28px 18px 32px !important;
+            min-height: auto;
+            padding: 24px 20px 40px !important;
+          }
+
+          .login-visual-inner {
+            max-width: 720px !important;
+            margin: 0 auto;
           }
 
           .login-form-card {
-            max-width: 100% !important;
+            max-width: 560px !important;
+            margin: 0 auto;
           }
 
-          .login-title {
-            font-size: 28px !important;
+          .login-testimonial {
+            margin-top: 28px !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .login-main {
+            background: #f6f8fb !important;
           }
 
-          .login-hero-title {
-            font-size: 28px !important;
+          .login-visual {
+            padding: 32px 18px 24px !important;
           }
 
-          .login-hero-text {
-            font-size: 14px !important;
+          .login-form {
+            padding: 20px 16px 28px !important;
+          }
+
+          .login-form-card {
+            padding: 24px 18px !important;
+            border-radius: 20px !important;
+          }
+
+          .login-logo img {
+            width: 112px !important;
+          }
+
+          .login-illustration-circle {
+            width: 76px !important;
+            height: 76px !important;
+            border-radius: 22px !important;
+            font-size: 34px !important;
           }
 
           .login-actions-row {
@@ -135,20 +216,142 @@ export default function LoginPage() {
             align-items: flex-start !important;
             gap: 12px !important;
           }
+
+          .login-divider {
+            margin: 22px 0 18px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .login-visual {
+            padding: 24px 14px 18px !important;
+          }
+
+          .login-form {
+            padding: 16px 12px 24px !important;
+          }
+
+          .login-form-card {
+            padding: 20px 14px !important;
+            border-radius: 18px !important;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08) !important;
+          }
+
+          .login-badge {
+            padding: 7px 12px !important;
+            font-size: 11px !important;
+            margin-bottom: 18px !important;
+          }
+
+          .login-hero-title {
+            line-height: 1.08 !important;
+          }
+
+          .login-hero-text {
+            line-height: 1.6 !important;
+            margin-bottom: 22px !important;
+          }
+
+          .login-feature-text {
+            font-size: 13px !important;
+          }
+
+          .login-testimonial {
+            padding: 16px !important;
+            border-radius: 16px !important;
+          }
+
+          .login-label {
+            font-size: 11px !important;
+          }
+
+          .login-input,
+          .login-password-input,
+          .login-social-btn,
+          .login-submit-btn {
+            min-height: 48px !important;
+            font-size: 14px !important;
+          }
+
+          .login-eye-btn {
+            right: 10px !important;
+            padding: 6px 7px !important;
+            font-size: 11px !important;
+          }
+
+          .login-footer-text,
+          .login-signup-text {
+            line-height: 1.6 !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .login-form-card {
+            padding: 18px 12px !important;
+          }
+
+          .login-logo img {
+            width: 100px !important;
+          }
+
+          .login-checkbox-row {
+            gap: 10px !important;
+          }
+        }
+
+        @media (min-width: 1440px) {
+          .login-visual {
+            padding: 72px !important;
+          }
+
+          .login-form {
+            padding: 72px 40px !important;
+          }
+
+          .login-form-card {
+            max-width: 480px !important;
+          }
+
+          .login-visual-inner {
+            max-width: 520px !important;
+          }
+        }
+
+        @media (max-height: 760px) and (min-width: 1025px) {
+          .login-visual {
+            padding-top: 36px !important;
+            padding-bottom: 36px !important;
+          }
+
+          .login-form {
+            padding-top: 36px !important;
+            padding-bottom: 36px !important;
+          }
+
+          .login-testimonial {
+            margin-top: 24px !important;
+          }
         }
       `}</style>
 
       <main style={styles.main} className="login-main">
         <div style={styles.container} className="login-container">
-          <div style={styles.visualSection} className="login-visual">
+          <section style={styles.visualSection} className="login-visual">
             <div style={styles.decorative1} />
             <div style={styles.decorative2} />
 
-            <div style={styles.visualContent}>
-              <div style={styles.heroBadge}>Secure finance workspace</div>
+            <div style={styles.visualContent} className="login-visual-inner">
+              <div style={styles.heroBadge} className="login-badge">
+                Secure finance workspace
+              </div>
 
               <div style={styles.illustration}>
-                <div style={styles.illustrationCircle}>💳</div>
+                <div
+                  style={styles.illustrationCircle}
+                  className="login-illustration-circle"
+                >
+                  💳
+                </div>
               </div>
 
               <h2 style={styles.visualTitle} className="login-hero-title">
@@ -163,23 +366,25 @@ export default function LoginPage() {
               <div style={styles.featuresList}>
                 <div style={styles.featureItem}>
                   <div style={styles.featureCheckmark}>✓</div>
-                  <span style={styles.featureText}>Live account overview</span>
+                  <span style={styles.featureText} className="login-feature-text">
+                    Live account overview
+                  </span>
                 </div>
                 <div style={styles.featureItem}>
                   <div style={styles.featureCheckmark}>✓</div>
-                  <span style={styles.featureText}>
+                  <span style={styles.featureText} className="login-feature-text">
                     Spending and cashflow insights
                   </span>
                 </div>
                 <div style={styles.featureItem}>
                   <div style={styles.featureCheckmark}>✓</div>
-                  <span style={styles.featureText}>
+                  <span style={styles.featureText} className="login-feature-text">
                     Protected access and activity logs
                   </span>
                 </div>
               </div>
 
-              <div style={styles.testimonial}>
+              <div style={styles.testimonial} className="login-testimonial">
                 <p style={styles.testimonialLabel}>Platform update</p>
                 <p style={styles.testimonialText}>
                   Your workspace is configured for secure access. Sign in to
@@ -187,13 +392,13 @@ export default function LoginPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div style={styles.formSection} className="login-form">
+          <section style={styles.formSection} className="login-form">
             <div style={styles.formContainer} className="login-form-card">
               <div style={styles.logoContainer}>
                 <h1 style={styles.logo}>
-                  <Link href="/" style={styles.logoLink}>
+                  <Link href="/" style={styles.logoLink} className="login-logo">
                     <img
                       src="https://i.imgur.com/s0j9cDx.png"
                       alt="Hubio logo"
@@ -208,26 +413,31 @@ export default function LoginPage() {
                 <h2 style={styles.formTitle} className="login-title">
                   Welcome back
                 </h2>
-                <p style={styles.formSubtitle}>
+                <p style={styles.formSubtitle} className="login-form-subtitle">
                   Sign in with your account credentials to continue
                 </p>
               </div>
 
               <form onSubmit={handleLogin} style={styles.form}>
                 <div style={styles.formGroup}>
-                  <label style={styles.label}>Email Address</label>
+                  <label style={styles.label} className="login-label">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
                     style={styles.input}
+                    className="login-input"
                     required
                   />
                 </div>
 
                 <div style={styles.formGroup}>
-                  <label style={styles.label}>Password</label>
+                  <label style={styles.label} className="login-label">
+                    Password
+                  </label>
                   <div style={styles.passwordContainer}>
                     <input
                       type={showPassword ? "text" : "password"}
@@ -235,12 +445,14 @@ export default function LoginPage() {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
                       style={styles.passwordInput}
+                      className="login-password-input"
                       required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       style={styles.eyeButton}
+                      className="login-eye-btn"
                       aria-label="Toggle password visibility"
                     >
                       {showPassword ? "Hide" : "Show"}
@@ -250,7 +462,7 @@ export default function LoginPage() {
 
                 <div
                   style={styles.checkboxContainer}
-                  className="login-actions-row"
+                  className="login-actions-row login-checkbox-row"
                 >
                   <label style={styles.checkboxLabel}>
                     <input
@@ -261,6 +473,7 @@ export default function LoginPage() {
                     />
                     <span>Remember me</span>
                   </label>
+
                   <a href="#" style={styles.forgotLink}>
                     Forgot password?
                   </a>
@@ -278,6 +491,7 @@ export default function LoginPage() {
                     opacity: loading ? 0.75 : 1,
                     cursor: loading ? "not-allowed" : "pointer",
                   }}
+                  className="login-submit-btn"
                 >
                   {loading ? (
                     <div style={styles.loadingContainer}>
@@ -309,27 +523,31 @@ export default function LoginPage() {
                 </button>
               </form>
 
-              <div style={styles.divider}>
+              <div style={styles.divider} className="login-divider">
                 <div style={styles.dividerLine} />
                 <span style={styles.dividerText}>OR</span>
                 <div style={styles.dividerLine} />
               </div>
 
               <div style={styles.socialButtons}>
-                <button style={styles.socialButton} type="button">
+                <button
+                  style={styles.socialButton}
+                  className="login-social-btn"
+                  type="button"
+                >
                   <span style={styles.socialIcon}>G</span>
                   <span>Continue with Google</span>
                 </button>
               </div>
 
-              <p style={styles.signupText}>
+              <p style={styles.signupText} className="login-signup-text">
                 Don&apos;t have an account?{" "}
                 <Link href="/no-account" style={styles.signupLink}>
                   Request access
                 </Link>
               </p>
 
-              <p style={styles.footerText}>
+              <p style={styles.footerText} className="login-footer-text">
                 By signing in, you agree to our{" "}
                 <a href="#" style={styles.footerLink}>
                   Terms of Service
@@ -340,7 +558,7 @@ export default function LoginPage() {
                 </a>
               </p>
             </div>
-          </div>
+          </section>
         </div>
       </main>
     </>
@@ -352,21 +570,18 @@ const styles: Record<string, CSSProperties> = {
     minHeight: "100vh",
     background:
       "linear-gradient(180deg, #f8fbff 0%, #f4f7fb 45%, #eef3f9 100%)",
-    padding: "0",
   },
 
   container: {
-    display: "flex",
     minHeight: "100vh",
   },
 
   visualSection: {
-    width: "52%",
     background: "linear-gradient(135deg, #0066cc 0%, #0052cc 48%, #003f8f 100%)",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     padding: "56px",
     position: "relative",
     overflow: "hidden",
@@ -381,6 +596,7 @@ const styles: Record<string, CSSProperties> = {
     backgroundColor: "rgba(255, 255, 255, 0.10)",
     borderRadius: "50%",
     filter: "blur(70px)",
+    pointerEvents: "none",
   },
 
   decorative2: {
@@ -392,13 +608,14 @@ const styles: Record<string, CSSProperties> = {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: "50%",
     filter: "blur(80px)",
+    pointerEvents: "none",
   },
 
   visualContent: {
     position: "relative",
     zIndex: 2,
     width: "100%",
-    maxWidth: "460px",
+    maxWidth: "480px",
   },
 
   heroBadge: {
@@ -413,6 +630,8 @@ const styles: Record<string, CSSProperties> = {
     fontWeight: 600,
     marginBottom: "24px",
     backdropFilter: "blur(10px)",
+    width: "fit-content",
+    maxWidth: "100%",
   },
 
   illustration: {
@@ -440,6 +659,7 @@ const styles: Record<string, CSSProperties> = {
     color: "#fff",
     marginBottom: "14px",
     letterSpacing: "-0.04em",
+    wordBreak: "break-word",
   },
 
   visualSubtitle: {
@@ -459,7 +679,7 @@ const styles: Record<string, CSSProperties> = {
 
   featureItem: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: "12px",
   },
 
@@ -469,18 +689,21 @@ const styles: Record<string, CSSProperties> = {
     justifyContent: "center",
     width: "24px",
     height: "24px",
+    minWidth: "24px",
     borderRadius: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.20)",
     color: "#fff",
     fontSize: "12px",
     fontWeight: 700,
     flexShrink: 0,
+    marginTop: "1px",
   },
 
   featureText: {
     color: "rgba(255, 255, 255, 0.93)",
     fontSize: "14px",
     fontWeight: 500,
+    lineHeight: 1.55,
   },
 
   testimonial: {
@@ -509,7 +732,6 @@ const styles: Record<string, CSSProperties> = {
   },
 
   formSection: {
-    width: "48%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -557,6 +779,7 @@ const styles: Record<string, CSSProperties> = {
     margin: "6px 0 0 0",
     fontSize: "13px",
     color: "#6b7280",
+    lineHeight: 1.5,
   },
 
   formHeader: {
@@ -569,6 +792,7 @@ const styles: Record<string, CSSProperties> = {
     color: "#111827",
     margin: "0 0 8px 0",
     letterSpacing: "-0.04em",
+    lineHeight: 1.1,
   },
 
   formSubtitle: {
@@ -606,7 +830,6 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: "12px",
     backgroundColor: "#fff",
     outline: "none",
-    boxSizing: "border-box",
     color: "#111827",
   },
 
@@ -618,13 +841,12 @@ const styles: Record<string, CSSProperties> = {
 
   passwordInput: {
     width: "100%",
-    padding: "14px 52px 14px 16px",
+    padding: "14px 58px 14px 16px",
     fontSize: "14px",
     border: "1px solid #d1d5db",
     borderRadius: "12px",
     backgroundColor: "#fff",
     outline: "none",
-    boxSizing: "border-box",
     color: "#111827",
   },
 
@@ -650,6 +872,7 @@ const styles: Record<string, CSSProperties> = {
     justifyContent: "space-between",
     fontSize: "13px",
     gap: "12px",
+    flexWrap: "wrap",
   },
 
   checkboxLabel: {
@@ -658,6 +881,7 @@ const styles: Record<string, CSSProperties> = {
     gap: "8px",
     cursor: "pointer",
     color: "#4b5563",
+    lineHeight: 1.4,
   },
 
   checkbox: {
@@ -665,25 +889,24 @@ const styles: Record<string, CSSProperties> = {
     height: "16px",
     cursor: "pointer",
     accentColor: "#0066cc",
+    flexShrink: 0,
   },
 
   forgotLink: {
     color: "#0066cc",
     textDecoration: "none",
-    fontWeight: "600",
-    whiteSpace: "nowrap",
+    fontWeight: 600,
   },
 
   submitButton: {
     width: "100%",
     background: "linear-gradient(135deg, #0066cc 0%, #004999 100%)",
     color: "#fff",
-    fontWeight: "700",
+    fontWeight: 700,
     padding: "14px",
     borderRadius: "12px",
     border: "none",
     fontSize: "14px",
-    cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -749,7 +972,7 @@ const styles: Record<string, CSSProperties> = {
     justifyContent: "center",
     gap: "10px",
     color: "#111827",
-    fontWeight: "600",
+    fontWeight: 600,
     fontSize: "14px",
   },
 
@@ -777,7 +1000,7 @@ const styles: Record<string, CSSProperties> = {
   signupLink: {
     color: "#0066cc",
     textDecoration: "none",
-    fontWeight: "700",
+    fontWeight: 700,
   },
 
   footerText: {
@@ -803,6 +1026,8 @@ const styles: Record<string, CSSProperties> = {
     border: "1px solid #fecdd3",
     color: "#be123c",
     fontSize: "13px",
-    fontWeight: "600",
+    fontWeight: 600,
+    lineHeight: 1.5,
+    wordBreak: "break-word",
   },
 };
